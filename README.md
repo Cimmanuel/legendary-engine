@@ -136,7 +136,7 @@ Any one of the fields in the list above can be updated.
 ```json
 {
     "age": 23,
-    "_id": "5e54ce7ee383cb5ef8bd105c",
+    "_id": "5e552f78cdfb0d146b627467",
     "name": "Tomfoolery Simpleton",
     "email": "tomfoolery@mail.com",
     "createdAt": "2020-02-25T14:30:16.761Z",
@@ -145,3 +145,109 @@ Any one of the fields in the list above can be updated.
 }
 ```
 
+### *POST /tasks (create task)*
+#### Parameters
+| **Name** | **Type** | **Description** |
+| -------- | -------- | --------------- |
+| description | string | **Required.** The task to be completed. |
+| completed | boolean | Optional. Defaults to false. |
+
+#### Body (application/json)
+```json
+{
+	"description": "Deploy Task Manager API",
+	"completed": true
+}
+```
+
+#### Response
+**Status: 201 Created**
+```json
+{
+    "completed": true,
+    "_id": "5e55741625737862166dbcfd",
+    "description": "Deploy Task Manager API",
+    "owner": "5e552f78cdfb0d146b627467",
+    "createdAt": "2020-02-25T19:23:02.850Z",
+    "updatedAt": "2020-02-25T19:23:02.850Z",
+    "__v": 0
+}
+```
+
+### *GET /tasks (view all tasks)*
+#### Response
+**Status: 200 OK**
+```json
+[
+    {
+        "completed": true,
+        "_id": "5e55741625737862166dbcfd",
+        "description": "Deploy Task Manager API",
+        "owner": "5e552f78cdfb0d146b627467",
+        "createdAt": "2020-02-25T19:23:02.850Z",
+        "updatedAt": "2020-02-25T19:23:02.850Z",
+        "__v": 0
+    }
+]
+```
+
+### *GET /tasks/:id (view a particular task)*
+Assuming ID is 5e55741625737862166dbcfd:
+#### Response
+**Status: 200 OK**
+```json
+{
+    "completed": true,
+    "_id": "5e55741625737862166dbcfd",
+    "description": "Deploy Task Manager API",
+    "owner": "5e552f78cdfb0d146b627467",
+    "createdAt": "2020-02-25T19:23:02.850Z",
+    "updatedAt": "2020-02-25T19:23:02.850Z",
+    "__v": 0
+}
+```
+
+### *PATCH /tasks/:id (update a task)*
+Assuming ID is 5e55741625737862166dbcfd:
+#### Parameters
+`allowedUpdates = ['description', 'completed']`
+
+Any one of the fields in the list above can be updated.
+
+#### Body (application/json)
+```json
+{
+	"description": "Deploy Task Manager",
+	"completed": false
+}
+```
+
+#### Response
+**Status: 200 OK**
+```json
+{
+    "completed": false,
+    "_id": "5e55741625737862166dbcfd",
+    "description": "Deploy Task Manager",
+    "owner": "5e552f78cdfb0d146b627467",
+    "createdAt": "2020-02-25T19:23:02.850Z",
+    "updatedAt": "2020-02-25T19:54:01.305Z",
+    "__v": 0
+}
+```
+
+### *DELETE /tasks/:id (delete a task)*
+Assuming ID is 5e55741625737862166dbcfd:
+#### Response
+**Status: 200 OK**
+```json
+{
+    "completed": false,
+    "_id": "5e55741625737862166dbcfd",
+    "description": "Deploy Task Manager",
+    "owner": "5e552f78cdfb0d146b627467",
+    "createdAt": "2020-02-25T19:23:02.850Z",
+    "updatedAt": "2020-02-25T19:54:01.305Z",
+    "__v": 0
+}
+```
