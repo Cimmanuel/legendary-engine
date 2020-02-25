@@ -251,3 +251,31 @@ Assuming ID is 5e55741625737862166dbcfd:
     "__v": 0
 }
 ```
+
+### *POST /users/profile/avatar (upload avatar)*
+#### Body (formdata)
+```json
+avatar
+```
+
+#### Response
+**Status: 200 OK**
+```json
+{
+    "message": "Upload sucessful!"
+}
+```
+
+### *GET /users/:id/avatar (view avatar)*
+Assuming user ID is 5e552f78cdfb0d146b627467:  
+Go to your browser and visit `BASE_URL/users/5e552f78cdfb0d146b627467/avatar`
+Be sure to replace `BASE_URL` with the actual BASE_URL value.
+
+### *DELETE /users/profile/avatar (delete avatar)*
+#### Response
+**Status: 200 OK**
+```json
+{
+    "message": "Avatar deleted"
+}
+```
