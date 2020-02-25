@@ -19,9 +19,14 @@ This is a REST API built using Node.js and MongoDB. It allows users to manage To
 - GET /users/:id/avatar (view avatar)
 - DELETE /users/profile/avatar (delete avatar)
 
+Bear in mind that only the `create user` and `login user` endpoints do not require authentication. Every other endpoint requires the Authorization header set using the value of the token property sent back as part of the response body on user creation or login. 
+**Authorization = Bearer [token]**
+
+Check your inbox for a welcome message when you register and a goodbye message when you delete your account.
+
 ## Usage
 
-### POST /users (create user)
+### *POST /users (create user)*
 #### Parameters
 | **Name** | **Type** | **Description** |
 | -------- | -------- | --------------- |
@@ -40,7 +45,7 @@ This is a REST API built using Node.js and MongoDB. It allows users to manage To
 }
 ```
 
-### POST /users/login (login user)
+### *POST /users/login (login user)*
 #### Parameters
 | **Name** | **Type** | **Description** |
 | -------- | -------- | --------------- |
@@ -58,8 +63,7 @@ This is a REST API built using Node.js and MongoDB. It allows users to manage To
 #### Response
 *Create user and login user have similar response body.*  
 
-**Status: 201 Created** (for create user)\ 
-**Status: 200 OK** (for user login)
+**Status: 201 Created** (for create user) || **Status: 200 OK** (for user login)
 ```json
 {
     "user": {
@@ -75,9 +79,7 @@ This is a REST API built using Node.js and MongoDB. It allows users to manage To
 }
 ```
 
-*The token property in the response object is a Bearer Token and should be used to authenticate.*
-
-### POST /users/logout (logout user) and POST /users/logoutAll (all sessions)
+### *POST /users/logout (logout user) and POST /users/logoutAll (all sessions)*
 #### Response
 **Status: 200 OK**
 ```json
@@ -85,3 +87,61 @@ This is a REST API built using Node.js and MongoDB. It allows users to manage To
     "message": "Logout successful!"
 }
 ```
+
+### *GET /users/profile (view user profile)*
+#### Response  
+**Status: 200 OK**
+```json
+{
+    "age": 23,
+    "_id": "5e552f78cdfb0d146b627467",
+    "name": "Tomfoolery Simpleton",
+    "email": "tomfoolerysimpleton@gmail.com",
+    "createdAt": "2020-02-25T14:30:16.761Z",
+    "updatedAt": "2020-02-25T17:06:43.113Z",
+    "__v": 6
+}
+```
+
+### *PATCH /users/profile (update user profile)*
+#### Parameters
+`allowedUpdates = ['name', 'age', 'email', 'password']`
+
+Any one of the fields in the list above can be updated. 
+
+#### Body (application/json)
+```json
+{
+    "email": "tomfoolery@mail.com"
+}
+```
+
+#### Response
+**Status: 200 OK**
+```json
+{
+    "age": 23,
+    "_id": "5e552f78cdfb0d146b627467",
+    "name": "Tomfoolery Simpleton",
+    "email": "tomfoolery@mail.com",
+    "createdAt": "2020-02-25T14:30:16.761Z",
+    "updatedAt": "2020-02-25T17:41:31.423Z",
+    "__v": 6
+}
+```
+
+### *DELETE /users/profile (delete user profile)*
+#### Response
+**Status: 200 OK**
+```json
+{
+    "age": 23,
+    "_id": "5e54ce7ee383cb5ef8bd105c",
+    "name": "Tomfoolery Simpleton",
+    "email": "tomfoolery@mail.com",
+    "createdAt": "2020-02-25T14:30:16.761Z",
+    "updatedAt": "2020-02-25T17:41:31.423Z",
+    "__v": 6
+}
+```
+
