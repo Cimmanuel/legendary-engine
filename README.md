@@ -40,8 +40,25 @@ This is a REST API built using Node.js and MongoDB. It allows users to manage To
 }
 ```
 
+### POST /users/login (login user)
+#### Parameters
+| **Name** | **Type** | **Description** |
+| -------- | -------- | --------------- |
+| email | string | **Required.** The email of the user. |
+| password | string | **Required.** Password of choice. Musn't contain the word 'password'. |
+
+#### Body (application/json)
+```json
+{
+    "email": "tomfoolerysimpleton@gmail.com",
+    "password": "SomeStrongString",
+}
+```
+
 #### Response
-**Status: 201 Created**
+*Create user and login user have similar response body.*
+**Status: 201 Created** (for create user)
+**Status: 200 OK** (for user login)
 ```json
 {
     "user": {
@@ -54,5 +71,16 @@ This is a REST API built using Node.js and MongoDB. It allows users to manage To
         "__v": 1
     },
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTU1MmY3OGNkZmIwZDE0NmI2Mjc0NjciLCJpYXQiOjE1ODI2NDEwMTd9.7WdG1bXFnN37H6fxUTWHpJSIht6RL4UKrOfaxxp6174"
+}
+```
+
+**The token property in the response object is a Bearer Token and should be used to authenticate.**
+
+### POST /users/logout (logout user) and POST /users/logoutAll (all sessions)
+#### Response
+**Status: 200 OK**
+```json
+{
+    "message": "Logout successful!"
 }
 ```
