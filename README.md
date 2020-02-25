@@ -56,8 +56,9 @@ This is a REST API built using Node.js and MongoDB. It allows users to manage To
 ```
 
 #### Response
-*Create user and login user have similar response body.*
-**Status: 201 Created** (for create user)
+*Create user and login user have similar response body.*  
+
+**Status: 201 Created** (for create user)\ 
 **Status: 200 OK** (for user login)
 ```json
 {
@@ -74,7 +75,7 @@ This is a REST API built using Node.js and MongoDB. It allows users to manage To
 }
 ```
 
-**The token property in the response object is a Bearer Token and should be used to authenticate.**
+*The token property in the response object is a Bearer Token and should be used to authenticate.*
 
 ### POST /users/logout (logout user) and POST /users/logoutAll (all sessions)
 #### Response
