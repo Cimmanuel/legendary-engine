@@ -103,7 +103,7 @@ router.post('/users/profile/avatar', [auth, avatar.single('avatar')], async (req
 }, (error, req, res, next) => res.status(400).send({ error: error.message }))
 
 
-// Get avatar - GET /users/profile/avatar
+// Get avatar - GET /users/:id/avatar
 router.get('/users/:id/avatar', async (req, res) => {
     try {
         const user = await User.findById(req.params.id)
