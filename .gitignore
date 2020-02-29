@@ -113,5 +113,7 @@ temp/
 playground/
 mongodb.js
 src/ex-index.js
+src/math.js
+tests/math.test.js
 
 # End of https://www.gitignore.io/api/node
